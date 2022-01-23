@@ -138,11 +138,12 @@ else
 
     # Install VirtualGL
     wget https://sourceforge.net/projects/virtualgl/files/3.0/virtualgl_3.0_amd64.deb/download -O virtualgl_amd64.deb
-    sudo dpkg -i virtualgl*.deb
+    sudo dpkg -i virtualgl*.deb || true
+    sudo apt install -f -y
     rm virtualgl*.deb
 
     # Install TurboVNC
-    wget https://sourceforge.net/projects/turbovnc/files/2.2.7/turbovnc_2.2.7_amd64.deb/download -O turbovnc_2.1.1_amd64.deb
+    wget https://sourceforge.net/projects/turbovnc/files/2.2.7/turbovnc_2.2.7_amd64.deb/download -O turbovnc_amd64.deb
     sudo dpkg -i turbovnc*.deb
     rm turbovnc*.deb
 

@@ -36,7 +36,7 @@ sudo apt-get update
 sudo DEBIAN_FRONTEND=noninteractive apt-get upgrade -yq
 
 # Prepare for NVidia drivers install
-sudo apt-get install -y gcc make pkg-config xserver-xorg-dev linux-headers-$(uname -r) xterm xinit
+sudo apt-get install -y gcc make pkg-config xserver-xorg-dev linux-headers-$(uname -r) xterm xinit python2
 # xterm is needed for xinit
 
 if [ "$ubuntu_codename" = "bionic" ] ; then
@@ -46,7 +46,7 @@ if [ "$ubuntu_codename" = "bionic" ] ; then
 fi
 
 # Install Lubuntu/Xubuntu/anything
-sudo apt-get install -y lubuntu-desktop
+sudo apt-get install -y xfce4
 
 if $AMD_GPU; then
     # Installing AMD driver, see https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/install-amd-driver.html (but we don't install 32-bit support)
@@ -117,7 +117,7 @@ else
     rm NVIDIA-Linux-x86_64-${NVIDIA_DRIVER}.run
 
     # Preparation for virtualgl like in https://virtualgl.org/Documentation/HeadlessNV
-    sudo nvidia-xconfig -a --use-display-device=None --virtual=1280x1024
+    sudo nvidia-xconfig -a --use-display-device=None --virtual=1440x900
 
     echo ""
     echo "********************************************************************************"
@@ -137,12 +137,12 @@ else
     sudo /usr/bin/python2.7 fix_xorg_conf.py /etc/X11/xorg.conf
 
     # Install VirtualGL
-    wget https://sourceforge.net/projects/virtualgl/files/2.5.2/virtualgl_2.5.2_amd64.deb/download -O virtualgl_2.5.2_amd64.deb
+    wget https://sourceforge.net/projects/virtualgl/files/3.0/virtualgl_3.0_amd64.deb/download -O virtualgl_amd64.deb
     sudo dpkg -i virtualgl*.deb
     rm virtualgl*.deb
 
     # Install TurboVNC
-    wget https://sourceforge.net/projects/turbovnc/files/2.1.1/turbovnc_2.1.1_amd64.deb/download -O turbovnc_2.1.1_amd64.deb
+    wget https://sourceforge.net/projects/turbovnc/files/2.2.7/turbovnc_2.2.7_amd64.deb/download -O turbovnc_2.1.1_amd64.deb
     sudo dpkg -i turbovnc*.deb
     rm turbovnc*.deb
 
